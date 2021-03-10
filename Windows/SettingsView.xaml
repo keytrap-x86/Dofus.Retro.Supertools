@@ -1,0 +1,155 @@
+﻿<Window
+    x:Class="Dofus.Retro.Supertools.Windows.SettingsView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:core="clr-namespace:Dofus.Retro.Supertools.Core"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    Title="Options"
+    Width="665"
+    Height="387"
+    Style="{StaticResource DarkWindow}"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    FontSize="14"
+    MouseMove="DarkWindow_MouseMove"
+    SizeToContent="Height"
+    Topmost="True"
+    WindowStartupLocation="CenterScreen"
+    mc:Ignorable="d">
+    <DockPanel>
+        <Grid DockPanel.Dock="Top">
+            <Separator VerticalAlignment="Top" Background="{StaticResource BrushBorderDark}" />
+            <Image
+                Margin="0,3,0,0"
+                VerticalAlignment="Top"
+                Source="/Dofus.Retro.Supertools;component/Images/garlands_x665.png"
+                Stretch="Uniform" />
+        </Grid>
+
+        <Grid Margin="20,00,20,20">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+            <Grid
+                x:Name="GrdDragon"
+                Grid.Column="0"
+                Margin="0,0,20,0"
+                VerticalAlignment="Center">
+                <Image
+                    x:Name="ImgDragonBody"
+                    Width="150"
+                    HorizontalAlignment="Left"
+                    DockPanel.Dock="Left"
+                    Source="/Dofus.Retro.Supertools;component/Images/dragon3_body.png" />
+                <Image
+                    x:Name="ImgDragonHead"
+                    Width="50"
+                    Height="50"
+                    Margin="125,0,0,25"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Bottom"
+                    DockPanel.Dock="Left"
+                    RenderTransformOrigin="0.24,0.68"
+                    Source="/Dofus.Retro.Supertools;component/Images/dragon3_head.png">
+                    <Image.RenderTransform>
+                        <TransformGroup>
+                            <ScaleTransform />
+                            <SkewTransform />
+                            <RotateTransform Angle="{Binding DragonHeadAngle}" />
+                            <TranslateTransform />
+                        </TransformGroup>
+                    </Image.RenderTransform>
+                </Image>
+                <Grid
+                    x:Name="GrdDragonAngleHelper"
+                    Width="60"
+                    Height="40"
+                    Margin="10"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Bottom" />
+            </Grid>
+
+            <TabControl
+                Grid.Column="1"
+                Height="290"
+                Margin="0">
+                <TabItem Header="Général" Visibility="Collapsed">
+                    <StackPanel VerticalAlignment="Center" />
+                </TabItem>
+                <TabItem Header="Mon compte" Visibility="Collapsed">
+                    <StackPanel VerticalAlignment="Center" />
+                </TabItem>
+                <TabItem Header="Follower" IsSelected="True">
+                    <StackPanel Margin="10">
+                        <StackPanel.Resources>
+                            <Style TargetType="DockPanel">
+                                <Setter Property="Margin" Value="2" />
+                            </Style>
+                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+
+                        </StackPanel.Resources>
+
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource BrushForeground}" Text="Délai de mouvement (ms) : " />
+                            <TextBox
+                                x:Name="TxtMoveDelay"
+                                Width="90"
+                                HorizontalAlignment="Right"
+                                Text="{Binding Source={x:Static core:Static.Datacenter}, Path=MoveDelay}"
+                                ToolTip="Correspond au délai entre le mouvement de vos personnages. Il est déconseillé de mettre le délai supérieur à 400 ms"
+                                ToolTipService.HasDropShadow="True" />
+                        </DockPanel>
+
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource BrushForeground}" Text="Décalage horizontal du clique : " />
+                            <TextBox
+                                x:Name="TxtX"
+                                Width="90"
+                                HorizontalAlignment="Right"
+                                Text="{Binding Source={x:Static core:Static.Datacenter}, Path=XAxisSpace}" />
+                        </DockPanel>
+
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource BrushForeground}" Text="Décalage vertical du clique : " />
+                            <TextBox
+                                x:Name="TxtY"
+                                Width="90"
+                                HorizontalAlignment="Right"
+                                Text="{Binding Source={x:Static core:Static.Datacenter}, Path=YAxisSpace}" />
+                        </DockPanel>
+                    </StackPanel>
+                </TabItem>
+                <TabItem Header="A propos">
+                    <StackPanel Margin="10">
+                        <StackPanel.Resources>
+                            <Style TargetType="DockPanel">
+                                <Setter Property="Margin" Value="2" />
+                            </Style>
+                            <Style BasedOn="{StaticResource {x:Type TextBlock}}" TargetType="TextBlock">
+                                <Setter Property="VerticalAlignment" Value="Center" />
+                            </Style>
+
+                        </StackPanel.Resources>
+
+                        <DockPanel>
+                            <TextBlock Text="Version :" Foreground="{StaticResource BrushForeground}" />
+                            <TextBlock Text="{Binding Source={x:Static core:Static.Datacenter}, Path=CurrentVersion}" Foreground="{StaticResource BrushForeground}" />
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource BrushForeground}" Text="Développé par : "  />
+                            <TextBlock Text="Keytrap" Foreground="{StaticResource BrushBlue}" FontWeight="Bold" />
+                        </DockPanel>
+                        <DockPanel>
+                            <TextBlock Foreground="{StaticResource BrushForeground}" Text="Site web : " />
+                            <Label Content="https://keytrap.fr" Foreground="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" Cursor="Hand" MouseDown="Label_MouseDown" />
+                        </DockPanel>
+                    </StackPanel>
+                </TabItem>
+            </TabControl>
+        </Grid>
+    </DockPanel>
+
+</Window>

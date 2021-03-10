@@ -1,0 +1,304 @@
+﻿<Window
+    x:Class="Dofus.Retro.Supertools.Windows.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:controls="clr-namespace:Dofus.Retro.Supertools.Controls"
+    xmlns:core="clr-namespace:Dofus.Retro.Supertools.Core"
+    x:Name="Mainwindow"
+    Title="Dofus Retro Supertools"
+    Width="370"
+    Closing="Mainwindow_Closing"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    FontSize="14"
+    Style="{StaticResource DarkWindow}"
+    Loaded="Mainwindow_Loaded"
+    SizeToContent="Height"
+    Topmost="True"
+    mc:Ignorable="d">
+    <Grid>
+        <Image
+            MaxHeight="100"
+            MaxWidth="90"
+            Margin="0,15,0,0"
+            VerticalAlignment="Top"
+            Source="/Dofus.Retro.Supertools;component/favicon.ico"
+            Stretch="UniformToFill" />
+        <Separator VerticalAlignment="Top" Background="{DynamicResource BrushBorderLight}" />
+        <StackPanel>
+            <StackPanel Margin="15,30,15,0">
+                <Grid>
+                    <TextBlock
+                        Margin="0,55,0,0"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        DataContext="{Binding ElementName=Mainwindow}"
+                        FontSize="19"
+                        FontWeight="Bold"
+                        Text="Dofus Retro Supertools" />
+                    <StackPanel
+                        Margin="0,10,15,10"
+                        HorizontalAlignment="Center"
+                        DockPanel.Dock="Top">
+
+                        <Image
+                            Height="120"
+                            RenderTransformOrigin="0.5, 0.5"
+                            Source="/Dofus.Retro.Supertools;component/favicon.ico"
+                            Visibility="Hidden">
+                            <Image.RenderTransform>
+                                <ScaleTransform x:Name="ImageScale" ScaleX="1" ScaleY="1" />
+                            </Image.RenderTransform>
+                            <Image.Triggers>
+                                <EventTrigger RoutedEvent="Image.MouseEnter">
+                                    <BeginStoryboard>
+                                        <Storyboard RepeatBehavior="2x">
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ImageScale"
+                                                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                From="0.85"
+                                                To="1.1"
+                                                Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseOut" Power="2" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ImageScale"
+                                                Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                                From="0.85"
+                                                To="1.1"
+                                                Duration="0:0:0.4">
+                                                <DoubleAnimation.EasingFunction>
+                                                    <PowerEase EasingMode="EaseOut" Power="2" />
+                                                </DoubleAnimation.EasingFunction>
+                                            </DoubleAnimation>
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                                <EventTrigger RoutedEvent="Image.MouseLeave">
+                                    <BeginStoryboard>
+                                        <Storyboard>
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ImageScale"
+                                                Storyboard.TargetProperty="(ScaleTransform.ScaleX)"
+                                                To="1"
+                                                Duration="0:0:0.15" />
+                                            <DoubleAnimation
+                                                Storyboard.TargetName="ImageScale"
+                                                Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
+                                                To="1"
+                                                Duration="0:0:0.15" />
+                                        </Storyboard>
+                                    </BeginStoryboard>
+                                </EventTrigger>
+                            </Image.Triggers>
+                        </Image>
+                        <TextBlock
+                            HorizontalAlignment="Center"
+                            Text="{Binding Source={x:Static core:Static.Datacenter}, Path=CurrentVersion}"
+                            Visibility="{c:Binding RelativeSource={RelativeSource Mode=Self},
+                                                   Path=Text.Length > 0}" />
+                    </StackPanel>
+                </Grid>
+
+                <StackPanel
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center"
+                    Orientation="Horizontal">
+                    <Button
+                        x:Name="BtnShowAccountManagerView"
+                        Click="BtnShowAccountManagerView_Click"
+                        Content="Gestion des persos"
+                        FontSize="14" />
+                    <Button
+                        x:Name="BtnShowSettingsView"
+                        Click="BtnShowSettingsView_Click"
+                        Content="Options"
+                        FontSize="14" />
+                </StackPanel>
+
+                <StackPanel
+                    Margin="3"
+                    HorizontalAlignment="Center"
+                    VerticalAlignment="Center">
+                    <TextBlock
+                        Cursor="Hand"
+                        FontWeight="Bold"
+                        Foreground="{StaticResource BrushGreen}"
+                        MouseDown="TextBlock_MouseDown"
+                        Text="KeyTrap.fr"
+                        TextDecorations="Underline" />
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="15">
+                <controls:GroupSeparator Header="Suivi des personnages" />
+
+                <StackPanel>
+
+                    <Border
+                        Margin="0,20,0,0"
+                        Background="{StaticResource BrushBlackDark}"
+                        BorderBrush="{StaticResource BrushBorderLight}"
+                        BorderThickness="1"
+                        CornerRadius="3"
+                        Visibility="{c:Binding Source={x:Static core:Static.Datacenter},
+                                               Path=CharacterControllers.Count less 1}">
+                        <StackPanel>
+                            <TextBlock
+                                Margin="10,10,10,00"
+                                VerticalAlignment="Center"
+                                TextWrapping="Wrap"><Run Text="Oh.. on dirait que tu n'as encore aucun personnage !" /><LineBreak /><Run Text="Pour en ajouter un, lance le jeu puis écris " /><Run
+                                    FontWeight="Bold"
+                                    Foreground="{StaticResource BrushYellow}"
+                                    Text="*Hey*" /><Run Text=" dans le chat :" /></TextBlock>
+                            <Image
+                                Height="25"
+                                Margin="10"
+                                gif:ImageBehavior.AnimatedSource="../Images/hey.gif"
+                                IsHitTestVisible="False" />
+                        </StackPanel>
+                    </Border>
+
+
+                    <CheckBox
+                        x:Name="ChkSelectAllCharacters"
+                        Margin="0,10,0,0"
+                        Checked="ChkSelectAllCharacters_OnChecked"
+                        Content="Sélectionner tout"
+                        FontSize="16"
+                        Foreground="{StaticResource BrushForeground}"
+                        Unchecked="ChkSelectAllCharacters_OnUnchecked"
+                        Visibility="{c:Binding Source={x:Static core:Static.Datacenter},
+                                               Path=CharacterControllers.Count > 0}" />
+                    <ListView
+                        x:Name="LstvCharacters"
+                        Margin="0,5,0,15"
+                        Background="Transparent"
+                        BorderThickness="0"
+                        ItemsSource="{Binding Source={x:Static core:Static.Datacenter}, Path=CharacterControllers}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                        <ListView.ItemContainerStyle>
+                            <Style TargetType="{x:Type ListViewItem}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Template">
+                                    <Setter.Value>
+                                        <ControlTemplate TargetType="{x:Type ListViewItem}">
+                                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
+                                        </ControlTemplate>
+                                    </Setter.Value>
+                                </Setter>
+                            </Style>
+                        </ListView.ItemContainerStyle>
+                    </ListView>
+                    <StackPanel Margin="0,0,0,10" HorizontalAlignment="Stretch">
+                        <Button
+                            x:Name="BtnStartStopFollower"
+                            Click="BtnStartStopFollower_Click"
+                            Content="{c:Binding (IsFollowerRunning ? \'(Alt+W) Arrêter\' : \'(Alt+W) Démarrer\')}"
+                            Foreground="{c:Binding (IsFollowerRunning ? \'#FBB848\' : \'#43B581\')}"
+                            IsEnabled="{c:Binding CheckedCharacters.Count &gt; 1}"
+                            ToolTip="Démarrer/Arrêter le follower"
+                            Visibility="{c:Binding Source={x:Static core:Static.Datacenter},
+                                                   Path=CharacterControllers.Count > 0}" />
+                        <Button
+                            x:Name="BtnConnectEveryone"
+                            Click="BtnConnectEveryone_Click"
+                            Content="Connecter tout le monde"
+                            IsEnabled="{c:Binding NotConnectedCharacters.Count &gt; 1}"
+                            ToolTip="Connecter tous les personnages"
+                            Visibility="{c:Binding Source={x:Static core:Static.Datacenter},
+                                                   Path=CharacterControllers.Count > 0}" />
+
+
+                    </StackPanel>
+
+                </StackPanel>
+
+
+                <controls:GroupSeparator Header="Auto Switch" Visibility="{c:Binding Source={x:Static core:Static.Datacenter}, Path=CharacterControllers.Count > 0}" />
+
+
+                <Border x:Name="BrdAutoSwitch" Visibility="{c:Binding Source={x:Static core:Static.Datacenter}, Path=CharacterControllers.Count > 0}">
+                    <StackPanel
+                        x:Name="StkAutoSwitches"
+                        Margin="10,15,0,15"
+                        IsEnabled="{Binding IsNpcapInstalled}"
+                        ToolTipService.ShowOnDisabled="True">
+                        <StackPanel.Resources>
+                            <Style BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="CheckBox">
+                                <Setter Property="Margin" Value="0,6,0,0" />
+                                <Setter Property="FontSize" Value="16" />
+                            </Style>
+                        </StackPanel.Resources>
+                        <CheckBox
+                            x:Name="ChkSwitchFenetreCombat"
+                            Content="En combat"
+                            Foreground="{StaticResource BrushForeground}"
+                            IsChecked="{Binding SwitchOnTurnStart, Source={x:Static core:Static.Datacenter}}" />
+                        <CheckBox
+                            x:Name="ChkSwitchFenetreEchange"
+                            Content="Demande d'échange"
+                            Foreground="{StaticResource BrushForeground}"
+                            IsChecked="{Binding SwitchOnExchangeRequest, Source={x:Static core:Static.Datacenter}}" />
+                        <CheckBox
+                            x:Name="ChkSwitchFenetreGroupe"
+                            Content="Demande de groupe"
+                            Foreground="{StaticResource BrushForeground}"
+                            IsChecked="{Binding SwitchOnGroupInvite, Source={x:Static core:Static.Datacenter}}" />
+                    </StackPanel>
+                </Border>
+
+                <Button
+                    x:Name="BtnInstallNpcap"
+                    Width="180"
+                    Height="50"
+                    HorizontalAlignment="Center"
+                    BorderBrush="#FF036A8E"
+                    Click="BtnInstallNpcap_OnClick"
+                    Content="Installer NpCap"
+                    FontWeight="Regular">
+                    <Button.Style>
+                        <Style BasedOn="{StaticResource {x:Type Button}}" TargetType="Button">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding ElementName=Mainwindow, Path=IsNpcapInstalled}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+            </StackPanel>
+            <Separator Background="{DynamicResource ResourceKey=BrushBorderLight}" />
+            <Border BorderBrush="{StaticResource BrushBorderLight}">
+                <TextBlock
+                    Margin="0,10,0,10"
+                    HorizontalAlignment="Center"
+                    FontSize="14"
+                    Text="{Binding Status, ElementName=Mainwindow}" />
+            </Border>
+            <DockPanel
+                x:Name="DkpUpdating"
+                Margin="10"
+                Visibility="Collapsed">
+                <TextBlock
+                    VerticalAlignment="Center"
+                    FontSize="10"
+                    Text="Mise à jours en cours..." />
+                <ProgressBar
+                    x:Name="PrgbUpdate"
+                    Height="4"
+                    Margin="10,0,0,0"
+                    HorizontalAlignment="Stretch"
+                    VerticalAlignment="Center"
+                    Background="{StaticResource BrushBlackDark}"
+                    BorderBrush="{StaticResource BrushBlackLight}"
+                    Foreground="{StaticResource BrushGreen}" />
+            </DockPanel>
+        </StackPanel>
+    </Grid>
+</Window>

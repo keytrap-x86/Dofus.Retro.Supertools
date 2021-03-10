@@ -1,0 +1,387 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{B549BE0B-1C11-4562-969B-035161B227AB}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Dofus.Retro.Supertools</RootNamespace>
+    <AssemblyName>Dofus.Retro.Supertools</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>x64</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="Controls\WindowControlButton.xaml.cs">
+      <DependentUpon>WindowControlButton.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Extensions\Extensions.cs" />
+    <Compile Include="Core\Helpers\ControlHelper.cs" />
+    <Compile Include="Core\Helpers\UidHelper.cs" />
+    <Compile Include="Core\Helpers\WindowHelper.cs" />
+    <Compile Include="Core\Messages\CharacterListMessage.cs" />
+    <Compile Include="Core\Object\OcrString.cs" />
+    <Compile Include="Core\Object\Server.cs" />
+    <Compile Include="Windows\AccountManagerView.xaml.cs">
+      <DependentUpon>AccountManagerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\CharactersPositionLocator.xaml.cs">
+      <DependentUpon>CharactersPositionLocator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\LoginStatus.xaml.cs">
+      <DependentUpon>LoginStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\SettingsView.xaml.cs">
+      <DependentUpon>SettingsView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Controls\CharacterController.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\GroupSeparator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\SupertoolBadge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Controls\WindowControlButton.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Windows\AccountManagerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\AddCharacterView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\CharactersPositionLocator.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\LoginStatus.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Windows\MainWindow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Controls\CharacterController.xaml.cs">
+      <DependentUpon>CharacterController.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\DragDropListView\DragAdorner.cs" />
+    <Compile Include="Controls\DragDropListView\ListViewDragDropManager.cs" />
+    <Compile Include="Controls\GroupSeparator.xaml.cs">
+      <DependentUpon>GroupSeparator.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\SupertoolBadge.xaml.cs">
+      <DependentUpon>SupertoolBadge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Core\Character.cs" />
+    <Compile Include="Core\Datacenter.cs" />
+    <Compile Include="Core\Helpers\ImageHelper.cs" />
+    <Compile Include="Core\Helpers\LoginHelper.cs" />
+    <Compile Include="Core\Helpers\MouseHelper.cs" />
+    <Compile Include="Core\Helpers\NetworkHelper.cs" />
+    <Compile Include="Core\Helpers\PInvokeHelper.cs" />
+    <Compile Include="Core\Helpers\ProcessHelper.cs" />
+    <Compile Include="Core\Helpers\RegistryHelper.cs" />
+    <Compile Include="Core\Helpers\SecurityHelper.cs" />
+    <Compile Include="Core\Messages\ChatMessage.cs" />
+    <Compile Include="Core\Messages\ExchangeInviteMessage.cs" />
+    <Compile Include="Core\Messages\GameTurnStartMessage.cs" />
+    <Compile Include="Core\Messages\GroupInviteMessage.cs" />
+    <Compile Include="Core\Packets\DataProcessor.cs" />
+    <Compile Include="Core\Static.cs" />
+    <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="Windows\AddCharacterView.xaml.cs">
+      <DependentUpon>AddCharacterView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Windows\MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Page Include="Windows\SettingsView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="Resources\activate_window.au3" />
+    <None Include="Resources\_ImageSearch_Tool.au3" />
+    <None Include="Resources\_ImageSearch_UDF.au3" />
+    <None Include="Resources\find_by_ocr.ahk" />
+    <None Include="Resources\lib\FindText.ahk" />
+    <Resource Include="Fonts\whitneybold.otf" />
+    <Resource Include="Fonts\whitneybook.otf" />
+    <Resource Include="Fonts\whitneybookitalic.otf" />
+    <Resource Include="Fonts\whitneylight.otf" />
+    <Resource Include="Fonts\whitneylightitalic.otf" />
+    <Resource Include="Fonts\whitneymedium.otf" />
+    <Resource Include="Fonts\whitneymediumitalic.otf" />
+    <Resource Include="Fonts\whitneysemibold.otf" />
+    <Resource Include="Fonts\WhitneySemiboldItalic.otf" />
+    <Resource Include="Fonts\TeenyTinyPixls-o2zo.ttf" />
+    <Resource Include="Fonts\BebasNeue-Regular.ttf" />
+    <Resource Include="Fonts\JetBrainsMono-Variable-Italic.ttf" />
+    <Resource Include="Fonts\JetBrainsMono-Variable.ttf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dofusretro_logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\login\login.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\npcap-1.00.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\play\play.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\_ImageSearch_DLL\_ImageSearch.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\_ImageSearch_DLL\_ImageSearch_x64.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\christmas_banner_x490.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\christmas_banner_full.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon3_flipped.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon2_body.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon2_head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\sparkle_yellow.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon1_head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon1_body.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\dragon3_body.png" />
+    <Resource Include="Images\dragon3_head.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\garlands_x665.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Fichier 1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\Fichier 5.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\server_list.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\find_character.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\hey.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="AutoItX.Dotnet">
+      <Version>3.3.14.5</Version>
+    </PackageReference>
+    <PackageReference Include="CalcBinding">
+      <Version>2.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="CrashReporter.NET.Official">
+      <Version>1.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="DeltaCompressionDotNet">
+      <Version>2.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="DynamicExpresso.Core">
+      <Version>2.3.3</Version>
+    </PackageReference>
+    <PackageReference Include="HandyControl">
+      <Version>3.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="ini-parser">
+      <Version>2.5.2</Version>
+    </PackageReference>
+    <PackageReference Include="InputSimulator">
+      <Version>1.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="Mono.Cecil">
+      <Version>0.9.6.1</Version>
+    </PackageReference>
+    <PackageReference Include="MouseKeyHook">
+      <Version>5.6.0</Version>
+    </PackageReference>
+    <PackageReference Include="Newtonsoft.Json">
+      <Version>12.0.3</Version>
+    </PackageReference>
+    <PackageReference Include="PacketDotNet">
+      <Version>1.1.2</Version>
+    </PackageReference>
+    <PackageReference Include="ppy.squirrel.windows">
+      <Version>1.9.0.4</Version>
+    </PackageReference>
+    <PackageReference Include="SharpCompress">
+      <Version>0.22.0</Version>
+    </PackageReference>
+    <PackageReference Include="SharpPcap">
+      <Version>5.3.0</Version>
+    </PackageReference>
+    <PackageReference Include="Splat">
+      <Version>1.6.2</Version>
+    </PackageReference>
+    <PackageReference Include="System.Buffers">
+      <Version>4.5.1</Version>
+    </PackageReference>
+    <PackageReference Include="System.Memory">
+      <Version>4.5.4</Version>
+    </PackageReference>
+    <PackageReference Include="System.Numerics.Vectors">
+      <Version>4.5.0</Version>
+    </PackageReference>
+    <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
+      <Version>5.0.0</Version>
+    </PackageReference>
+    <PackageReference Include="Winook">
+      <Version>1.1.0</Version>
+    </PackageReference>
+    <PackageReference Include="WpfAnimatedGif">
+      <Version>2.0.0</Version>
+    </PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\find_by_ocr.exe">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\servers\Crail.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\servers\Eratz.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\servers\Galgarion.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\servers\Henual.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\servers\Boune.bmp">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <CO_FirstProject>True</CO_FirstProject>
+    <CO_LastProject>True</CO_LastProject>
+    <CO_Config>Release|AnyCPU</CO_Config>
+    <CO_ProjectFilePath>.\Dofus.Retro.Supertools_Release_AnyCPU.obproj</CO_ProjectFilePath>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,153 @@
+﻿<UserControl
+    x:Class="Dofus.Retro.Supertools.Controls.CharacterController"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="clr-namespace:CalcBinding;assembly=CalcBinding"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:gif="http://wpfanimatedgif.codeplex.com"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    x:Name="Usercontrol"
+    Height="39"
+    DataContext="{Binding RelativeSource={RelativeSource Mode=Self}}"
+    mc:Ignorable="d">
+    <Border
+        Padding="5,2,5,2"
+        BorderThickness="0"
+        CornerRadius="4">
+
+        <Grid Margin="0" HorizontalAlignment="Center">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <CheckBox
+                x:Name="ChkCharacter"
+                Grid.Column="0"
+                Margin="2,0,5,0"
+                IsChecked="{Binding Character.IsChecked, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}">
+                <CheckBox.Content>
+                    <Grid>
+                        <Grid Grid.Column="0">
+                            <Image
+                                Height="25"
+                                gif:ImageBehavior.AnimatedSource="../Images/sparkle_yellow.gif"
+                                IsHitTestVisible="False"
+                                Opacity="0.7"
+                                Stretch="Fill">
+                                <Image.Style>
+                                    <Style TargetType="Image">
+                                        <Setter Property="Visibility" Value="Collapsed" />
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding Character.IsWindowFocused}" Value="True">
+                                                <Setter Property="Visibility" Value="Visible" />
+                                            </DataTrigger>
+                                            <DataTrigger Binding="{Binding Character.Process}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed" />
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </Grid>
+                        <TextBlock
+                            x:Name="TxtName"
+                            VerticalAlignment="Center"
+                            Cursor="Hand"
+                            FontSize="16"
+                            MouseUp="TxtName_OnMouseUp"
+                            PreviewMouseDown="TxtName_PreviewMouseDown"
+                            Text="{Binding Character.Name, UpdateSourceTrigger=PropertyChanged}"
+                            TextTrimming="CharacterEllipsis"
+                            Typography.StandardLigatures="True">
+                            <TextBlock.Style>
+                                <Style TargetType="TextBlock">
+                                    <Setter Property="Foreground" Value="{StaticResource BrushForeground}" />
+                                    <Setter Property="FontWeight" Value="Regular" />
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Character.IsConnected}" Value="True">
+                                            <Setter Property="Foreground" Value="{StaticResource BrushGreen}" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Character.IsWindowFocused}" Value="True">
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                            <Setter Property="Foreground" Value="{StaticResource BrushYellow}" />
+                                        </DataTrigger>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="ToolTip" Value="Switcher" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                        </Trigger>
+
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </Grid>
+                </CheckBox.Content>
+                <CheckBox.Style>
+                    <Style BasedOn="{StaticResource {x:Type CheckBox}}" TargetType="CheckBox">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Character.Process}" Value="{x:Null}">
+                                <Setter Property="Opacity" Value="0.3" />
+                                <Setter Property="IsHitTestVisible" Value="False" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </CheckBox.Style>
+            </CheckBox>
+
+            <Image
+                Grid.Column="2"
+                Height="30"
+                VerticalAlignment="Center"
+                gif:ImageBehavior.AnimatedSource="/Dofus.Retro.Supertools;component/Images/loading.gif">
+                <Image.Style>
+                    <Style TargetType="Image">
+                        <Setter Property="Visibility" Value="Collapsed" />
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Character.IsConnecting}" Value="True">
+                                <Setter Property="Visibility" Value="Visible" />
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </Image.Style>
+            </Image>
+            <StackPanel
+                Grid.Column="3"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal"
+                Visibility="Visible">
+                <StackPanel.Resources>
+                    <!--<Style TargetType="local:MiniButton">
+                        <Setter Property="Margin" Value="3,0,0,0" />
+                    </Style>-->
+                </StackPanel.Resources>
+
+                <Button
+                    x:Name="BtnConfigureAccount"
+                    Margin="3,0,3,0"
+                    Click="BtnConfigureAccount_Click"
+                    Content="&#xEF58;"
+                    DataContext="{Binding ElementName=Usercontrol}"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="16"
+                    Foreground="{StaticResource BrushYellow}"
+                    ToolTip="Configurer le compte"
+                    Visibility="{c:Binding '!Character.IsConnecting and (Character.Username == null or Character.Password == null or Character.Server == null)',
+                                           FallbackValue=Collapsed}" />
+                <Button
+                    x:Name="BtnConnectCharacter"
+                    Margin="3,0,3,0"
+                    Click="BtnConnectCharacter_Click"
+                    Content="&#xE945;"
+                    FontFamily="Segoe MDL2 Assets"
+                    FontSize="16"
+                    Foreground="{StaticResource BrushGreen}"
+                    ToolTip="Connecter"
+                    Visibility="{c:Binding '!Character.IsConnected and !Character.IsConnecting and (Character.Username.Length > 0) and (Character.Password.Length > 0) and (Character.Server != null)',
+                                           FallbackValue={x:Static Visibility.Collapsed}}" />
+
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>
