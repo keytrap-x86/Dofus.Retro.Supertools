@@ -9,25 +9,18 @@ using Dofus.Retro.Supertools.Core.Packets;
 
 using Gma.System.MouseKeyHook;
 
-using HandyControl.Data;
-
 using IniParser;
-
-using Newtonsoft.Json;
 
 using PacketDotNet;
 
 using SharpPcap;
 using SharpPcap.Npcap;
 
-using Squirrel;
-
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Diagnostics;
-using System.Dynamic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
@@ -39,12 +32,9 @@ using System.Timers;
 using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media.Animation;
-using System.Windows.Threading;
-
 using Winook;
 
 using Application = System.Windows.Application;
-using MessageBox = System.Windows.MessageBox;
 using Timer = System.Timers.Timer;
 
 namespace Dofus.Retro.Supertools.Windows
