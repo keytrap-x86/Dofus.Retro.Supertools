@@ -9,7 +9,8 @@ Présentation de Dofus Retro Supertools​
 
 C'est un outil qui a été spécialement développé pour Dofus Rétro, plus précisément pour ceux qui jouent en multicompte mais pas que..
 
-![](https://i.imgur.com/wHzUzmk.png)
+![image](https://user-images.githubusercontent.com/17864005/114140533-aca5b700-9910-11eb-8b1a-05be6c9245d1.png)
+
 
 Voici les principales fonctionnalités du logiciel :
 
