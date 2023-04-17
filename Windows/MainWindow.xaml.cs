@@ -1036,7 +1036,7 @@ namespace Dofus.Retro.Supertools.Windows
         private async void BtnInstallNpcap_OnClick(object sender, RoutedEventArgs e)
         {
             Status = "Installation de Npcap...";
-            await ProcessHelper.RunProgram("Resources\\npcap-1.00.exe");
+            await ProcessHelper.RunProgram("Resources\\npcap-1.73.exe");
             Status = "Prêt";
             IsNpcapInstalled = RegistryHelper.IsNpcapInstalled();
 
